@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url("assets/background.png");
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(0, 0, 76);
+}
+
+div {
+  background-color: white;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+#mainDisplay {
+  height: 85vh;
+}
+.optionButton {
+  border-radius: 10px;
+  border: 10px rgb(14, 24, 30) solid;
+  width: 5vw;
+  height: 10vh;
+}
+
+#optionSection {
+  overflow-y: scroll;
+}
+#optionSection::-webkit-scrollbar {
+  display: none;
+}
+
+#selectSection {
+  border: 10px rgb(4, 29, 46) solid;
+  overflow-y: scroll;
+}
+
+#selectSection::-webkit-scrollbar {
+  display: none;
+}
+
+#avatardisplay {
+  width: 50vw;
+  border-radius: 10px;
+  border: 10px rgb(171, 209, 234) solid;
+  position: relative;
+}
+
+#avatardisplay img {
+  position: absolute;
+  left: 50%;
+  height: 100%;
+  transform: translateX(-50%);
+  width: auto;
+}
+
+@media (max-width: 425px) {
+  #mainDisplay {
+    flex-direction: column;
+  }
+
+  #optionSection {
+    overflow-x: scroll;
+  }
+}
