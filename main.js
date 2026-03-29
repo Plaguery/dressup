@@ -23,7 +23,12 @@ class Item {
 }
 
 //initialize all the item types
-const hatArray = [new Item("assets/cap.png"), new Item("assets/griffin.png")];
+const hatArray = [
+  new Item("assets/hat1.png"),
+  new Item("assets/hat2.png"),
+  new Item("assets/hat3.png"),
+  new Item("assets/hat4.png"),
+];
 const hat = document.querySelector("#hats");
 hat.addEventListener("click", () => show("hats", hatArray));
 
