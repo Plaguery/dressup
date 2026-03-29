@@ -30,7 +30,7 @@ div {
 }
 .optionButton {
   border-radius: 10px;
-  border: 10px rgb(14, 24, 30) solid;
+  border: 1px rgb(14, 24, 30) solid;
   width: 5vw;
   height: 10vh;
 }

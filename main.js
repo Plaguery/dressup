@@ -50,21 +50,19 @@ const faceArray = [
 const face = document.querySelector("#faces");
 face.addEventListener("click", () => show("faces", faceArray));
 
+//set up section
 const sectionArray = [hat, hair, face];
 
-//switch -> active "section"?
-//pass in array + specific "section" active
-//shows the types
-//blah blah blah
-
 function show(type, arr) {
-  //possibly refactor? pass in array directly
   const buttons = arr;
-  const activeButton = fetchItems(type);
+  const activeButton = fetchButton(type);
   for (const s of sectionArray) {
     s.style.outline = "";
+    s.style.outlineOffset = "-5px";
+    s.style.backgroundColor = "white";
   }
   activeButton.style.outline = "5px red solid ";
+  activeButton.style.backgroundColor = "rgb(171, 209, 234)";
 
   const display = document.querySelector("#selectSection");
   display.innerHTML = "";
@@ -116,8 +114,8 @@ function redrawAvatar() {
   }
 }
 
-//returns list of items in selected type
-function fetchItems(type) {
+//returns button for selected type
+function fetchButton(type) {
   switch (type) {
     case "hats":
       return hat;
