@@ -48,7 +48,6 @@ div {
 }
 
 #selectSection::-webkit-scrollbar {
-  display: none;
 }
 
 #avatardisplay {

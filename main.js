@@ -11,6 +11,11 @@ class Item {
 
   changeEquip() {
     this.equipped = !this.equipped;
+    return this.equipped;
+  }
+
+  unequip() {
+    this.equipped = false;
   }
 
   getSrc() {
@@ -21,6 +26,15 @@ class Item {
     return this.icon;
   }
 }
+
+//TODO!
+//make face only equipped 1 at time DONE. now make it redraw the buttons too ugh DONE ok
+//create icons (for items & select)
+//drag and drop?
+//fix order of items
+//custom scrollbar
+//make the css nicer
+//responsive
 
 //initialize all the item types
 const hatArray = [
@@ -52,9 +66,9 @@ face.addEventListener("click", () => show("faces", faceArray));
 
 //set up section
 const sectionArray = [hat, hair, face];
-
+const display = document.querySelector("#selectSection");
 function show(type, arr) {
-  const buttons = arr;
+  //sets up type buttons
   const activeButton = fetchButton(type);
   for (const s of sectionArray) {
     s.style.outline = "";
@@ -64,10 +78,20 @@ function show(type, arr) {
   activeButton.style.outline = "5px red solid ";
   activeButton.style.backgroundColor = "rgb(171, 209, 234)";
 
-  const display = document.querySelector("#selectSection");
-  display.innerHTML = "";
+  //redraws item buttons
+  const itemButtons = arr;
 
-  //loops thru array and redraws each item
+  //make this only for face/types that apply l8r
+  if (type == "faces") {
+    redrawItemButtonsExclusive(itemButtons);
+  } else {
+    redrawItemButtons(itemButtons);
+  }
+}
+
+//loops thru array and redraws each item
+function redrawItemButtons(buttons) {
+  display.innerHTML = "";
   for (let i = 0; i < buttons.length; i++) {
     const item = buttons[i];
     const button = document.createElement("img");
@@ -81,15 +105,60 @@ function show(type, arr) {
     display.appendChild(button);
 
     button.addEventListener("click", () => {
-      item.changeEquip();
-      redrawAvatar();
-
-      if (item.isEquipped()) {
+      if (item.changeEquip()) {
         //outlines button
         button.style.outline = "5px solid red";
+        button.style.backgroundColor = "rgb(171, 209, 234)";
       } else {
         button.style.outline = "";
+        button.style.backgroundColor = "white";
       }
+      redrawAvatar();
+    });
+  }
+}
+
+//loops thru array and redraws each item
+function redrawItemButtonsExclusive(buttons) {
+  display.innerHTML = "";
+  for (let i = 0; i < buttons.length; i++) {
+    const item = buttons[i];
+    const button = document.createElement("img");
+
+    //so change this to icon later
+    button.setAttribute("src", item.getSrc());
+    button.setAttribute("width", "100px");
+    button.style.outlineOffset = "-5px";
+    button.style.outline = item.isEquipped() ? "5px solid red" : "";
+    button.style.backgroundColor = item.isEquipped()
+      ? "rgb(171, 209, 234)"
+      : "white";
+
+    display.appendChild(button);
+
+    button.addEventListener("click", () => {
+      if (item.changeEquip()) {
+        for (let j = 0; j < buttons.length; j++) {
+          if (j == i) {
+            continue;
+          } else {
+            buttons[j].unequip();
+            console.log(j + " and i: " + i);
+          }
+        }
+
+        //yay recursion
+
+        redrawItemButtonsExclusive(buttons);
+
+        //outlines button
+        button.style.outline = "5px solid red";
+        button.style.backgroundColor = "rgb(171, 209, 234)";
+      } else {
+        button.style.outline = "";
+        button.style.backgroundColor = "white";
+      }
+      redrawAvatar();
     });
   }
 }
