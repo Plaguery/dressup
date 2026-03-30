@@ -18,6 +18,10 @@ class Item {
     this.equipped = false;
   }
 
+  equip() {
+    this.equipped = true;
+  }
+
   getSrc() {
     return this.src;
   }
@@ -28,6 +32,7 @@ class Item {
 }
 
 //TODO!
+//fully implement class based styling
 //make face only equipped 1 at time DONE. now make it redraw the buttons too ugh DONE ok
 //create icons (for items & select)
 //drag and drop?
@@ -70,13 +75,16 @@ const display = document.querySelector("#selectSection");
 function show(type, arr) {
   //sets up type buttons
   const activeButton = fetchButton(type);
+  const classes = activeButton.classList;
+
   for (const s of sectionArray) {
-    s.style.outline = "";
-    s.style.outlineOffset = "-5px";
-    s.style.backgroundColor = "white";
+    const classes = s.classList;
+    classes.remove("active");
   }
-  activeButton.style.outline = "5px red solid ";
-  activeButton.style.backgroundColor = "rgb(171, 209, 234)";
+
+  classes.add("active");
+  // activeButton.style.outline = "5px red solid ";
+  //activeButton.style.backgroundColor = "rgb(171, 209, 234)";
 
   //redraws item buttons
   const itemButtons = arr;
@@ -126,28 +134,25 @@ function redrawItemButtonsExclusive(buttons) {
     const button = document.createElement("img");
 
     //so change this to icon later
+
+    //creates the buttons
     button.setAttribute("src", item.getSrc());
     button.setAttribute("width", "100px");
     button.style.outlineOffset = "-5px";
-    button.style.outline = item.isEquipped() ? "5px solid red" : "";
-    button.style.backgroundColor = item.isEquipped()
-      ? "rgb(171, 209, 234)"
-      : "white";
+
+    //styles based on equipped/not
+    //button.style.outline = item.isEquipped() ? "5px solid red" : "";
+    //button.style.backgroundColor = item.isEquipped()
+    //? "rgb(171, 209, 234)"
+    // : "white";
 
     display.appendChild(button);
 
     button.addEventListener("click", () => {
       if (item.changeEquip()) {
-        for (let j = 0; j < buttons.length; j++) {
-          if (j == i) {
-            continue;
-          } else {
-            buttons[j].unequip();
-            console.log(j + " and i: " + i);
-          }
-        }
-
-        //yay recursion
+        //unequips all (except current button)
+        buttons.forEach((b) => b.unequip());
+        item.equip();
 
         redrawItemButtonsExclusive(buttons);
 
@@ -170,7 +175,7 @@ function redrawAvatar() {
   avatarDisplay.innerHTML = '<img src="assets/body.png" />';
 
   //loops thru all items
-  const arrs = [hatArray, hairArray, faceArray];
+  const arrs = [faceArray, hatArray, hairArray];
   for (const arr of arrs) {
     for (const item of arr) {
       //adds item to avatar display if equipped

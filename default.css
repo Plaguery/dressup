@@ -28,6 +28,12 @@ div {
 #mainDisplay {
   height: 85vh;
 }
+
+.active {
+  background-color: rgb(171, 209, 234);
+  outline: 3px red;
+}
+
 .optionButton {
   border-radius: 10px;
   border: 1px rgb(14, 24, 30) solid;
@@ -35,8 +41,16 @@ div {
   height: 10vh;
 }
 
+.optionButton:hover {
+  transition: all;
+  background-color: rgb(138, 169, 189);
+}
+
 #optionSection {
   overflow-y: scroll;
+  outline: none;
+  outline-offset: -5px;
+  background-color: white;
 }
 #optionSection::-webkit-scrollbar {
   display: none;
