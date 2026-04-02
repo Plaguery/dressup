@@ -3,6 +3,24 @@ class Item {
     this.src = src;
     this.icon = iconsSrc;
     this.equipped = false;
+    this.x = 0;
+    this.y = 0;
+  }
+
+  getX() {
+    return this.x;
+  }
+
+  getY() {
+    return this.y;
+  }
+
+  moveX(x) {
+    this.x += x;
+  }
+
+  moveY(y) {
+    this.y += y;
   }
 
   isEquipped() {
@@ -33,10 +51,10 @@ class Item {
 
 //TODO!
 //create icons (for items & select)
-//drag and drop?
+//position controls!
 //fix order of items
 //custom scrollbar
-//make the css nicer
+//make the css nicer -> rework color scheme, active, better outlines
 //responsive
 
 //initialize all the item types
@@ -67,6 +85,20 @@ const faceArray = [
 const face = document.querySelector("#faces");
 face.addEventListener("click", () => show("faces", faceArray));
 
+//movement buttons
+var activeItem = new Item();
+const upButton = document.querySelector("#up");
+upButton.addEventListener("click", () => move("up"));
+
+const downButton = document.querySelector("#down");
+downButton.addEventListener("click", () => move("down"));
+
+const leftButton = document.querySelector("#left");
+leftButton.addEventListener("click", () => move("left"));
+
+const rightButton = document.querySelector("#right");
+rightButton.addEventListener("click", () => move("right"));
+
 //set up
 const arrs = [faceArray, hatArray, hairArray];
 
@@ -96,6 +128,27 @@ function show(type, arr) {
   }
 }
 
+function move(dir) {
+  const active = activeItem;
+  const amount = 5;
+  switch (dir) {
+    case "up":
+      active.moveY(-amount);
+      console.log("up" + active.getSrc());
+      break;
+    case "down":
+      active.moveY(amount);
+      break;
+    case "left":
+      active.moveX(-amount);
+      break;
+    case "right":
+      active.moveX(amount);
+      break;
+  }
+  redrawAvatar();
+}
+
 //loops thru array and redraws each item
 function redrawItemButtons(buttons) {
   display.innerHTML = "";
@@ -106,6 +159,7 @@ function redrawItemButtons(buttons) {
     //so change this to icon later
     const buttonClasses = button.classList;
     button.setAttribute("src", item.getSrc());
+
     buttonClasses.add("button");
 
     item.isEquipped()
@@ -118,6 +172,7 @@ function redrawItemButtons(buttons) {
       if (item.changeEquip()) {
         //outlines button
         buttonClasses.add("active");
+        activeItem = item;
       } else {
         buttonClasses.remove("active");
       }
@@ -152,6 +207,7 @@ function redrawItemButtonsExclusive(buttons) {
         item.equip();
         //outlines button
         buttonClasses.add("active");
+        activeItem = item;
         redrawItemButtonsExclusive(buttons);
       } else {
         buttonClasses.remove("active");
@@ -175,6 +231,8 @@ function redrawAvatar() {
       if (item.isEquipped()) {
         const equippedItem = document.createElement("img");
         equippedItem.setAttribute("src", item.getSrc());
+        equippedItem.style.top = item.getY() + "px";
+        equippedItem.style.left = "calc(50% + " + item.getX() + "px";
         avatarDisplay.appendChild(equippedItem);
       }
     }

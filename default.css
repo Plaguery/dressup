@@ -34,6 +34,10 @@ div {
   outline: 5px red solid;
 }
 
+#focused {
+  background-color: green;
+}
+
 .optionButton {
   border-radius: 10px;
   border: 1px rgb(159, 147, 230) solid;
@@ -73,6 +77,7 @@ div {
   border-radius: 10px;
   border: 10px rgb(171, 209, 234) solid;
   position: relative;
+  overflow: hidden;
 }
 
 .button {
@@ -83,6 +88,7 @@ div {
 #avatardisplay img {
   position: absolute;
   left: 50%;
+
   height: 100%;
   transform: translateX(-50%);
   width: auto;
