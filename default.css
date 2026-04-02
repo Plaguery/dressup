@@ -75,6 +75,11 @@ div {
   position: relative;
 }
 
+.button {
+  width: 100px;
+  outline-offset: -5px;
+}
+
 #avatardisplay img {
   position: absolute;
   left: 50%;
@@ -101,10 +106,19 @@ div {
     flex-direction: row;
   }
 
+  .optionButton {
+    width: 100%;
+  }
+
   #selectSection {
+    height: 30%;
     overflow-x: scroll;
     flex-direction: row;
   }
   #selectSection img {
+  }
+
+  .button {
+    width: auto;
   }
 }

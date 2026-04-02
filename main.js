@@ -32,8 +32,6 @@ class Item {
 }
 
 //TODO!
-//fully implement class based styling (esp for faces)
-//make face only equipped 1 at time DONE. now make it redraw the buttons too ugh DONE ok
 //create icons (for items & select)
 //drag and drop?
 //fix order of items
@@ -86,8 +84,6 @@ function show(type, arr) {
   }
 
   classes.add("active");
-  // activeButton.style.outline = "5px red solid ";
-  //activeButton.style.backgroundColor = "rgb(171, 209, 234)";
 
   //redraws item buttons
   const itemButtons = arr;
@@ -110,8 +106,8 @@ function redrawItemButtons(buttons) {
     //so change this to icon later
     const buttonClasses = button.classList;
     button.setAttribute("src", item.getSrc());
-    button.setAttribute("width", "100px");
-    button.style.outlineOffset = "-5px";
+    buttonClasses.add("button");
+
     item.isEquipped()
       ? buttonClasses.add("active")
       : buttonClasses.remove("active");
@@ -142,8 +138,7 @@ function redrawItemButtonsExclusive(buttons) {
     //creates the buttons
 
     button.setAttribute("src", item.getSrc());
-    button.setAttribute("width", "100px");
-    button.style.outlineOffset = "-5px";
+    buttonClasses.add("button");
     item.isEquipped()
       ? buttonClasses.add("active")
       : buttonClasses.remove("active");
