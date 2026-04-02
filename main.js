@@ -54,15 +54,15 @@ const hair = document.querySelector("#hairs");
 hair.addEventListener("click", () => show("hairs", hairArray));
 
 const faceArray = [
-  new Item("assets/face1.png"),
-  new Item("assets/face2.png"),
-  new Item("assets/face3.png"),
-  new Item("assets/face4.png"),
-  new Item("assets/face5.png"),
-  new Item("assets/face6.png"),
-  new Item("assets/face7.png"),
-  new Item("assets/face8.png"),
-  new Item("assets/face9.png"),
+  new Item("assets/face1.png", "assets/icons/face1.png"),
+  new Item("assets/face2.png", "assets/icons/face2.png"),
+  new Item("assets/face3.png", "assets/icons/face3.png"),
+  new Item("assets/face4.png", "assets/icons/face4.png"),
+  new Item("assets/face5.png", "assets/icons/face5.png"),
+  new Item("assets/face6.png", "assets/icons/face6.png"),
+  new Item("assets/face7.png", "assets/icons/face7.png"),
+  new Item("assets/face8.png", "assets/icons/face8.png"),
+  new Item("assets/face9.png", "assets/icons/face9.png"),
 ];
 const face = document.querySelector("#faces");
 face.addEventListener("click", () => show("faces", faceArray));
@@ -137,7 +137,7 @@ function redrawItemButtonsExclusive(buttons) {
 
     //creates the buttons
 
-    button.setAttribute("src", item.getSrc());
+    button.setAttribute("src", item.getIcon());
     buttonClasses.add("button");
     item.isEquipped()
       ? buttonClasses.add("active")
