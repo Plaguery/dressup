@@ -32,7 +32,7 @@ class Item {
 }
 
 //TODO!
-//fully implement class based styling
+//fully implement class based styling (esp for faces)
 //make face only equipped 1 at time DONE. now make it redraw the buttons too ugh DONE ok
 //create icons (for items & select)
 //drag and drop?
@@ -69,9 +69,12 @@ const faceArray = [
 const face = document.querySelector("#faces");
 face.addEventListener("click", () => show("faces", faceArray));
 
-//set up section
+//set up
+const arrs = [faceArray, hatArray, hairArray];
+
 const sectionArray = [hat, hair, face];
 const display = document.querySelector("#selectSection");
+
 function show(type, arr) {
   //sets up type buttons
   const activeButton = fetchButton(type);
@@ -105,21 +108,22 @@ function redrawItemButtons(buttons) {
     const button = document.createElement("img");
 
     //so change this to icon later
+    const buttonClasses = button.classList;
     button.setAttribute("src", item.getSrc());
     button.setAttribute("width", "100px");
     button.style.outlineOffset = "-5px";
-    button.style.outline = item.isEquipped() ? "5px solid red" : "";
+    item.isEquipped()
+      ? buttonClasses.add("active")
+      : buttonClasses.remove("active");
 
     display.appendChild(button);
 
     button.addEventListener("click", () => {
       if (item.changeEquip()) {
         //outlines button
-        button.style.outline = "5px solid red";
-        button.style.backgroundColor = "rgb(171, 209, 234)";
+        buttonClasses.add("active");
       } else {
-        button.style.outline = "";
-        button.style.backgroundColor = "white";
+        buttonClasses.remove("active");
       }
       redrawAvatar();
     });
@@ -132,19 +136,17 @@ function redrawItemButtonsExclusive(buttons) {
   for (let i = 0; i < buttons.length; i++) {
     const item = buttons[i];
     const button = document.createElement("img");
-
+    const buttonClasses = button.classList;
     //so change this to icon later
 
     //creates the buttons
+
     button.setAttribute("src", item.getSrc());
     button.setAttribute("width", "100px");
     button.style.outlineOffset = "-5px";
-
-    //styles based on equipped/not
-    //button.style.outline = item.isEquipped() ? "5px solid red" : "";
-    //button.style.backgroundColor = item.isEquipped()
-    //? "rgb(171, 209, 234)"
-    // : "white";
+    item.isEquipped()
+      ? buttonClasses.add("active")
+      : buttonClasses.remove("active");
 
     display.appendChild(button);
 
@@ -153,15 +155,11 @@ function redrawItemButtonsExclusive(buttons) {
         //unequips all (except current button)
         buttons.forEach((b) => b.unequip());
         item.equip();
-
-        redrawItemButtonsExclusive(buttons);
-
         //outlines button
-        button.style.outline = "5px solid red";
-        button.style.backgroundColor = "rgb(171, 209, 234)";
+        buttonClasses.add("active");
+        redrawItemButtonsExclusive(buttons);
       } else {
-        button.style.outline = "";
-        button.style.backgroundColor = "white";
+        buttonClasses.remove("active");
       }
       redrawAvatar();
     });
@@ -175,7 +173,7 @@ function redrawAvatar() {
   avatarDisplay.innerHTML = '<img src="assets/body.png" />';
 
   //loops thru all items
-  const arrs = [faceArray, hatArray, hairArray];
+
   for (const arr of arrs) {
     for (const item of arr) {
       //adds item to avatar display if equipped

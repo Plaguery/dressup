@@ -1,6 +1,6 @@
 # Description
 
-A simple dress-up game! it was a stroke of genius that inspired me to make this.
+A simple dress-up game!
 
 Once again, built using just js, html, and css. this project is pretty js reliant haha.
 i drew all the sprites myself

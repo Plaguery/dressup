@@ -31,7 +31,7 @@ div {
 
 .active {
   background-color: rgb(171, 209, 234);
-  outline: 3px red;
+  outline: 5px red solid;
 }
 
 .optionButton {
@@ -64,6 +64,10 @@ div {
 #selectSection::-webkit-scrollbar {
 }
 
+.selectButton {
+  width: 100px;
+}
+
 #avatardisplay {
   width: 50vw;
   border-radius: 10px;
@@ -79,12 +83,28 @@ div {
   width: auto;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 768px) {
   #mainDisplay {
+    width: 80vw;
     flex-direction: column;
+  }
+
+  #avatardisplay {
+    height: 100%;
+    width: auto;
+
+    display: block;
   }
 
   #optionSection {
     overflow-x: scroll;
+    flex-direction: row;
+  }
+
+  #selectSection {
+    overflow-x: scroll;
+    flex-direction: row;
+  }
+  #selectSection img {
   }
 }
