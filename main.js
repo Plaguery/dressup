@@ -23,6 +23,11 @@ class Item {
     this.y += y;
   }
 
+  resetPos() {
+    this.x = 0;
+    this.y = 0;
+  }
+
   isEquipped() {
     return this.equipped;
   }
@@ -99,6 +104,9 @@ leftButton.addEventListener("click", () => move("left"));
 const rightButton = document.querySelector("#right");
 rightButton.addEventListener("click", () => move("right"));
 
+const resetButton = document.querySelector("#reset");
+resetButton.addEventListener("click", () => move("reset"));
+
 //set up
 const arrs = [faceArray, hatArray, hairArray];
 
@@ -145,6 +153,8 @@ function move(dir) {
     case "right":
       active.moveX(amount);
       break;
+    case "reset":
+      active.resetPos();
   }
   redrawAvatar();
 }
@@ -237,6 +247,9 @@ function redrawAvatar() {
       }
     }
   }
+  // const lines = document.createElement("img");
+  //lines.setAttribute("src", "assets/bodyline.png");
+  //avatarDisplay.appendChild(lines);
 }
 
 //returns button for selected type
