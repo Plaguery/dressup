@@ -55,12 +55,9 @@ class Item {
 }
 
 //TODO!
-//make buttons not block bottom selections
-//tooltips for icons
+
 //create icons (for items & select)
-//position controls!
 //fix order of items
-//custom scrollbar
 //make the css nicer -> rework color scheme, active, better outlines
 //responsive
 

@@ -2,47 +2,60 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="default.css" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Fredoka&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
 
   <body>
-    <h1>Dress Up</h1>
+    <br />
+    <h1 class="cherry-bomb">Dress Up</h1>
+    <h2>by plaguery</h2>
     <br />
     <div class="col">
       <div class="row" id="mainDisplay">
         <div class="col" id="optionSection">
-          <div class="optionButton" id="hats">hat</div>
-          <div class="optionButton" id="faces">face</div>
-          <div class="optionButton" id="tops">top</div>
-          <div class="optionButton" id="bottoms">bottom</div>
-          <div class="optionButton" id="accessories">accessories</div>
+          <div class="optionButton" id="hats" title="hats">hat</div>
+          <div class="optionButton" id="faces" title="faces">face</div>
+          <div class="optionButton" id="tops" title="tops">top</div>
+          <div class="optionButton" id="bottoms" title="bottoms">bottom</div>
+          <div class="optionButton" id="accessories" title="accessories">
+            accessories
+          </div>
         </div>
         <div id="avatardisplay"><img src="assets/body.png" /></div>
-        <div class="col" id="selectSection">select some things</div>
-      </div>
-      <div class="col" id="controllerBox">
-        <button class="adjustButton" id="up">
-          <img src="assets/arrowUp.png" />
-        </button>
-        <div class="row">
-          <button class="adjustButton" id="left">
-            <img src="assets/arrowLeft.png" />
-          </button>
-          <button class="adjustButton" id="reset">
-            <img src="assets/arrowCenter.png" />
-          </button>
-          <button class="adjustButton" id="right">
-            <img src="assets/arrowRight.png" />
-          </button>
+        <div class="col" id="selectMain">
+          <div class="col" id="selectSection">select some things</div>
+          <div class="col" id="controllerBox">
+            <button class="adjustButton" id="up">
+              <img src="assets/arrowUp.png" />
+            </button>
+            <div class="row">
+              <button class="adjustButton" id="left">
+                <img src="assets/arrowLeft.png" />
+              </button>
+              <button class="adjustButton" id="reset">
+                <img src="assets/arrowCenter.png" />
+              </button>
+              <button class="adjustButton" id="right">
+                <img src="assets/arrowRight.png" />
+              </button>
+            </div>
+            <button class="adjustButton" id="down">
+              <img src="assets/arrowDown.png" />
+            </button>
+          </div>
         </div>
-        <button class="adjustButton" id="down">
-          <img src="assets/arrowDown.png" />
-        </button>
       </div>
     </div>
+    <br />
+
     <script src="main.js"></script>
   </body>
 </html>
