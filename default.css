@@ -9,10 +9,10 @@ body {
   flex-direction: column;
   align-items: center;
   color: rgb(0, 0, 76);
+  position: relative;
 }
 
 div {
-  background-color: white;
 }
 
 .row {
@@ -25,81 +25,32 @@ div {
   flex-direction: column;
 }
 
-#mainDisplay {
-  height: 85vh;
-}
-
 .active {
   background-color: rgb(171, 209, 234);
-  outline: 5px red solid;
+  outline: 5px rgb(133, 162, 182) solid;
 }
 
 #focused {
   background-color: green;
 }
 
-.optionButton {
-  border-radius: 10px;
-  border: 1px rgb(159, 147, 230) solid;
-  width: 5vw;
-  height: 10vh;
-}
-
-.optionButton:hover {
-  transition: all;
-  background-color: rgb(138, 169, 189);
-}
-
-#optionSection {
-  overflow-y: scroll;
-  outline: none;
+.button {
+  width: 100px;
   outline-offset: -5px;
   background-color: white;
 }
-#optionSection::-webkit-scrollbar {
-  display: none;
-}
 
-#selectSection {
-  border: 10px rgb(4, 29, 46) solid;
-  overflow-y: scroll;
-}
-
-#selectSection::-webkit-scrollbar {
-}
-
-.selectButton {
-  width: 100px;
+#mainDisplay {
+  height: 85vh;
+  background-color: transparent;
 }
 
 #avatardisplay {
   width: 50vw;
-  border-radius: 10px;
+  background-color: white;
   border: 10px rgb(171, 209, 234) solid;
   position: relative;
   overflow: hidden;
-}
-
-.button {
-  width: 100px;
-  outline-offset: -5px;
-}
-
-.adjustButton {
-  width: 40px;
-  height: 40px;
-  border: none;
-  background-color: transparent;
-}
-.adjustButton img {
-  width: 100%;
-  height: 100%;
-}
-
-.adjustButton:hover img {
-  transition: all 0.3s;
-  transform: scale(1.3);
-  filter: drop-shadow(3px 3px 5px rgb(171, 209, 234));
 }
 
 #avatardisplay img {
@@ -111,15 +62,72 @@ div {
   width: auto;
 }
 
+#optionSection {
+  overflow-y: scroll;
+  outline: none;
+  outline-offset: -5px;
+  background-color: transparent;
+  width: 5vw;
+}
+#optionSection::-webkit-scrollbar {
+  display: none;
+}
+
+.optionButton {
+  border-radius: 10px 0px 0px 10px;
+  border: 1px rgb(159, 147, 230) solid;
+  outline-offset: -5px;
+  width: 5vw;
+  height: 10vh;
+  background-color: white;
+}
+
+.optionButton:hover {
+  transition: all;
+  background-color: rgb(138, 169, 189);
+}
+
+#selectSection {
+  background-color: white;
+  border: 5px rgb(171, 209, 234) solid;
+  overflow-y: scroll;
+}
+
+#selectSection::-webkit-scrollbar {
+}
+
+.selectButton {
+  width: 100px;
+}
+
 #controllerBox {
   background-color: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-items: center;
-  position: relative;
-  top: -20vh;
-  right: -20vh;
+  position: absolute;
+  bottom: 5vh;
+  right: 50vh;
+  pointer-events: none;
+}
+
+.adjustButton {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+  pointer-events: all;
+}
+.adjustButton img {
+  width: 100%;
+  height: 100%;
+}
+
+.adjustButton:hover img {
+  transition: all 0.3s;
+  transform: scale(1.3);
+  filter: drop-shadow(3px 3px 5px rgb(171, 209, 234));
 }
 @media (max-width: 768px) {
   #mainDisplay {

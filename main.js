@@ -55,6 +55,8 @@ class Item {
 }
 
 //TODO!
+//make buttons not block bottom selections
+//tooltips for icons
 //create icons (for items & select)
 //position controls!
 //fix order of items
@@ -71,10 +73,6 @@ const hatArray = [
 ];
 const hat = document.querySelector("#hats");
 hat.addEventListener("click", () => show("hats", hatArray));
-
-const hairArray = [new Item("assets/griffin.png")];
-const hair = document.querySelector("#hairs");
-hair.addEventListener("click", () => show("hairs", hairArray));
 
 const faceArray = [
   new Item("assets/face1.png", "assets/icons/face1.png"),
@@ -108,9 +106,9 @@ const resetButton = document.querySelector("#reset");
 resetButton.addEventListener("click", () => move("reset"));
 
 //set up
-const arrs = [faceArray, hatArray, hairArray];
+const arrs = [faceArray, hatArray];
 
-const sectionArray = [hat, hair, face];
+const sectionArray = [hat, face];
 const display = document.querySelector("#selectSection");
 
 function show(type, arr) {
