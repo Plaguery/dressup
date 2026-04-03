@@ -94,6 +94,12 @@ div {
 }
 
 #selectSection::-webkit-scrollbar {
+  background-color: white;
+}
+
+#selectSection::-webkit-scrollbar-thumb {
+  background-color: rgb(133, 162, 182);
+  border-radius: 10px;
 }
 
 .selectButton {
@@ -143,12 +149,15 @@ div {
   }
 
   #optionSection {
-    overflow-x: scroll;
     flex-direction: row;
+    overflow-x: scroll;
+    width: auto;
+    height: 8vh;
   }
 
   .optionButton {
-    width: 100%;
+    width: 15vw;
+    border-radius: 10px 10px 0px 0px;
   }
 
   #selectSection {
