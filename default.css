@@ -31,8 +31,8 @@ div {
   outline: 5px rgb(133, 162, 182) solid;
 }
 
-#focused {
-  background-color: green;
+.focus {
+  background-color: green !important;
 }
 
 .button {
@@ -133,6 +133,10 @@ div {
   pointer-events: none;
 }
 
+#controllerBox .row {
+  align-items: center;
+}
+
 .adjustButton {
   width: 40px;
   height: 40px;
@@ -152,7 +156,9 @@ div {
 }
 
 #reset {
-  margin: 2%;
+  width: 30px;
+  height: 30px;
+  margin: 3%;
 }
 @media (max-width: 768px) {
   #mainDisplay {
@@ -194,5 +200,11 @@ div {
   }
   #selectSection img {
     height: auto;
+  }
+}
+
+@media (max-width: 425px) {
+  #mainDisplay {
+    width: 90vw;
   }
 }

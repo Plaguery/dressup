@@ -5,6 +5,7 @@ class Item {
     this.equipped = false;
     this.x = 0;
     this.y = 0;
+    this.focus = false;
   }
 
   getX() {
@@ -37,12 +38,8 @@ class Item {
     return this.equipped;
   }
 
-  unequip() {
-    this.equipped = false;
-  }
-
-  equip() {
-    this.equipped = true;
+  setEquip(set) {
+    this.equipped = set;
   }
 
   getSrc() {
@@ -55,35 +52,8 @@ class Item {
 }
 
 //TODO!
-
-//create icons (for items & select)
-//fix order of items
 //make the css nicer -> rework color scheme, active, better outlines
 //responsive
-
-//initialize all the item types
-const hatArray = [
-  new Item("assets/hat1.png"),
-  new Item("assets/hat2.png"),
-  new Item("assets/hat3.png"),
-  new Item("assets/hat4.png"),
-];
-const hat = document.querySelector("#hats");
-hat.addEventListener("click", () => show("hats", hatArray));
-
-const faceArray = [
-  new Item("assets/face1.png", "assets/icons/face1.png"),
-  new Item("assets/face2.png", "assets/icons/face2.png"),
-  new Item("assets/face3.png", "assets/icons/face3.png"),
-  new Item("assets/face4.png", "assets/icons/face4.png"),
-  new Item("assets/face5.png", "assets/icons/face5.png"),
-  new Item("assets/face6.png", "assets/icons/face6.png"),
-  new Item("assets/face7.png", "assets/icons/face7.png"),
-  new Item("assets/face8.png", "assets/icons/face8.png"),
-  new Item("assets/face9.png", "assets/icons/face9.png"),
-];
-const face = document.querySelector("#faces");
-face.addEventListener("click", () => show("faces", faceArray));
 
 //movement buttons
 var activeItem = new Item();
@@ -102,10 +72,70 @@ rightButton.addEventListener("click", () => move("right"));
 const resetButton = document.querySelector("#reset");
 resetButton.addEventListener("click", () => move("reset"));
 
-//set up
-const arrs = [faceArray, hatArray];
+//initialize all the item types
+const hatArray = [
+  new Item("assets/hat1.png", "assets/icons/hat1.png"),
+  new Item("assets/hat2.png", "assets/icons/hat2.png"),
+  new Item("assets/hat3.png", "assets/icons/hat3.png"),
+  new Item("assets/hat4.png", "assets/icons/hat4.png"),
+  new Item("assets/hat5.png", "assets/icons/hat5.png"),
+  new Item("assets/hat6.png", "assets/icons/hat6.png"),
+  new Item("assets/hat7.png", "assets/icons/hat7.png"),
+  new Item("assets/hat8.png", "assets/icons/hat8.png"),
+  new Item("assets/hat9.png", "assets/icons/hat9.png"),
+];
+const hat = document.querySelector("#hats");
+hat.addEventListener("click", () => show("hats", hatArray));
 
-const sectionArray = [hat, face];
+const faceArray = [
+  new Item("assets/face1.png", "assets/icons/face1.png"),
+  new Item("assets/face2.png", "assets/icons/face2.png"),
+  new Item("assets/face3.png", "assets/icons/face3.png"),
+  new Item("assets/face4.png", "assets/icons/face4.png"),
+  new Item("assets/face5.png", "assets/icons/face5.png"),
+  new Item("assets/face6.png", "assets/icons/face6.png"),
+  new Item("assets/face7.png", "assets/icons/face7.png"),
+  new Item("assets/face8.png", "assets/icons/face8.png"),
+  new Item("assets/face9.png", "assets/icons/face9.png"),
+];
+const face = document.querySelector("#faces");
+face.addEventListener("click", () => show("faces", faceArray));
+
+const accessoryArray = [
+  new Item("assets/accessory1.png", "assets/icons/accessory1.png"),
+  new Item("assets/accessory2.png", "assets/icons/accessory2.png"),
+  new Item("assets/accessory3.png", "assets/icons/accessory3.png"),
+  new Item("assets/accessory4.png", "assets/icons/accessory4.png"),
+  new Item("assets/accessory5.png", "assets/icons/accessory5.png"),
+  new Item("assets/accessory6.png", "assets/icons/accessory6.png"),
+  new Item("assets/accessory7.png", "assets/icons/accessory7.png"),
+  new Item("assets/accessory8.png", "assets/icons/accessory8.png"),
+];
+const accessory = document.querySelector("#accessories");
+accessory.addEventListener("click", () => show("accessories", accessoryArray));
+
+const shirtArray = [
+  new Item("assets/top1.png", "assets/icons/top1.png"),
+  new Item("assets/top2.png", "assets/icons/top2.png"),
+  new Item("assets/top3.png", "assets/icons/top3.png"),
+  new Item("assets/top4.png", "assets/icons/top4.png"),
+];
+const shirt = document.querySelector("#shirts");
+shirt.addEventListener("click", () => show("shirts", shirtArray));
+
+const pantArray = [
+  new Item("assets/bottom1.png", "assets/icons/bottom1.png"),
+  new Item("assets/bottom2.png", "assets/icons/bottom2.png"),
+  new Item("assets/bottom3.png", "assets/icons/bottom3.png"),
+];
+const pant = document.querySelector("#pants");
+pant.addEventListener("click", () => show("pants", pantArray));
+
+//set up
+//arrs is in order of rendering
+const arrs = [shirtArray, pantArray, faceArray, hatArray, accessoryArray];
+const sectionArray = [hat, face, accessory, shirt, pant];
+
 const display = document.querySelector("#selectSection");
 
 function show(type, arr) {
@@ -123,35 +153,27 @@ function show(type, arr) {
   //redraws item buttons
   const itemButtons = arr;
 
-  //make this only for face/types that apply l8r
-  if (type == "faces") {
+  if (type == "faces" || type == "shirts" || type == "pants") {
     redrawItemButtonsExclusive(itemButtons);
   } else {
     redrawItemButtons(itemButtons);
   }
 }
 
-function move(dir) {
-  const active = activeItem;
-  const amount = 5;
-  switch (dir) {
-    case "up":
-      active.moveY(-amount);
-      console.log("up" + active.getSrc());
-      break;
-    case "down":
-      active.moveY(amount);
-      break;
-    case "left":
-      active.moveX(-amount);
-      break;
-    case "right":
-      active.moveX(amount);
-      break;
-    case "reset":
-      active.resetPos();
+//returns button for selected type
+function fetchButton(type) {
+  switch (type) {
+    case "hats":
+      return hat;
+    case "accessories":
+      return accessory;
+    case "faces":
+      return face;
+    case "pants":
+      return pant;
+    case "shirts":
+      return shirt;
   }
-  redrawAvatar();
 }
 
 //loops thru array and redraws each item
@@ -163,7 +185,7 @@ function redrawItemButtons(buttons) {
 
     //so change this to icon later
     const buttonClasses = button.classList;
-    button.setAttribute("src", item.getSrc());
+    button.setAttribute("src", item.getIcon());
 
     buttonClasses.add("button");
 
@@ -208,8 +230,8 @@ function redrawItemButtonsExclusive(buttons) {
     button.addEventListener("click", () => {
       if (item.changeEquip()) {
         //unequips all (except current button)
-        buttons.forEach((b) => b.unequip());
-        item.equip();
+        buttons.forEach((b) => b.setEquip(false));
+        item.setEquip(true);
         //outlines button
         buttonClasses.add("active");
         activeItem = item;
@@ -247,14 +269,25 @@ function redrawAvatar() {
   //avatarDisplay.appendChild(lines);
 }
 
-//returns button for selected type
-function fetchButton(type) {
-  switch (type) {
-    case "hats":
-      return hat;
-    case "hairs":
-      return hair;
-    case "faces":
-      return face;
+function move(dir) {
+  const active = activeItem;
+  const amount = 5;
+  switch (dir) {
+    case "up":
+      active.moveY(-amount);
+      console.log("up" + active.getSrc());
+      break;
+    case "down":
+      active.moveY(amount);
+      break;
+    case "left":
+      active.moveX(-amount);
+      break;
+    case "right":
+      active.moveX(amount);
+      break;
+    case "reset":
+      active.resetPos();
   }
+  redrawAvatar();
 }
