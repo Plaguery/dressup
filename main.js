@@ -78,7 +78,6 @@ const hatArray = [
   new Item("assets/hat6.png", "assets/icons/hat6.png"),
   new Item("assets/hat7.png", "assets/icons/hat7.png"),
   new Item("assets/hat8.png", "assets/icons/hat8.png"),
-  new Item("assets/hat9.png", "assets/icons/hat9.png"),
 ];
 const hat = document.querySelector("#hats");
 hat.addEventListener("click", () => show("hats", hatArray));
@@ -106,6 +105,7 @@ const accessoryArray = [
   new Item("assets/accessory6.png", "assets/icons/accessory6.png"),
   new Item("assets/accessory7.png", "assets/icons/accessory7.png"),
   new Item("assets/accessory8.png", "assets/icons/accessory8.png"),
+  new Item("assets/accessory9.png", "assets/icons/accessory9.png"),
 ];
 const accessory = document.querySelector("#accessories");
 accessory.addEventListener("click", () => show("accessories", accessoryArray));
