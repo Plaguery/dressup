@@ -13,9 +13,6 @@ body {
   position: relative;
 }
 
-div {
-}
-
 .row {
   display: flex;
   flex-direction: row;
@@ -28,11 +25,7 @@ div {
 
 .active {
   background-color: rgb(186, 224, 249) !important;
-  outline: 5px rgb(133, 162, 182) solid;
-}
-
-.focus {
-  background-color: green !important;
+  outline: 5px rgb(137, 185, 217) solid;
 }
 
 .button {
@@ -102,6 +95,11 @@ div {
   background-color: rgb(138, 169, 189);
 }
 
+.optionButton img {
+  width: 100%;
+  height: auto;
+}
+
 #selectMain {
   border: 5px rgb(171, 209, 234) solid;
   background-color: white;
@@ -117,7 +115,7 @@ div {
 }
 
 #selectSection::-webkit-scrollbar-thumb {
-  background-color: rgb(133, 162, 182);
+  background-color: rgb(137, 185, 217);
   border-radius: 10px;
 }
 
@@ -160,6 +158,7 @@ div {
   height: 30px;
   margin: 3%;
 }
+
 @media (max-width: 768px) {
   #mainDisplay {
     width: 80vw;
@@ -181,9 +180,14 @@ div {
   }
 
   .optionButton {
-    height: 5vw;
-    width: 15vw;
+    height: 8vw;
+    width: auto;
     border-radius: 10px 10px 0px 0px;
+  }
+
+  .optionButton img {
+    width: auto;
+    height: 100%;
   }
 
   #selectMain {

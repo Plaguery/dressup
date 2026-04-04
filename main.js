@@ -51,11 +51,7 @@ class Item {
   }
 }
 
-//TODO!
-//make the css nicer -> rework color scheme, active, better outlines
-//responsive
-
-//movement buttons
+//sets up movement buttons
 var activeItem = new Item();
 const upButton = document.querySelector("#up");
 upButton.addEventListener("click", () => move("up"));
@@ -131,15 +127,15 @@ const pantArray = [
 const pant = document.querySelector("#pants");
 pant.addEventListener("click", () => show("pants", pantArray));
 
-//set up
 //arrs is in order of rendering
 const arrs = [shirtArray, pantArray, faceArray, hatArray, accessoryArray];
 const sectionArray = [hat, face, accessory, shirt, pant];
 
 const display = document.querySelector("#selectSection");
 
+//main redraw function (for switching item types)
 function show(type, arr) {
-  //sets up type buttons
+  //sets up & redraws type buttons
   const activeButton = fetchButton(type);
   const classes = activeButton.classList;
 
@@ -150,13 +146,12 @@ function show(type, arr) {
 
   classes.add("active");
 
-  //redraws item buttons
-  const itemButtons = arr;
+  //redraws item buttons in current section
 
   if (type == "faces" || type == "shirts" || type == "pants") {
-    redrawItemButtonsExclusive(itemButtons);
+    redrawItemButtonsExclusive(arr);
   } else {
-    redrawItemButtons(itemButtons);
+    redrawItemButtons(arr);
   }
 }
 
@@ -176,19 +171,19 @@ function fetchButton(type) {
   }
 }
 
-//loops thru array and redraws each item
+//loops thru array and redraws each item in current section
 function redrawItemButtons(buttons) {
   display.innerHTML = "";
   for (let i = 0; i < buttons.length; i++) {
     const item = buttons[i];
     const button = document.createElement("img");
 
-    //so change this to icon later
     const buttonClasses = button.classList;
     button.setAttribute("src", item.getIcon());
 
     buttonClasses.add("button");
 
+    //styles based on whether currently equipped or not
     item.isEquipped()
       ? buttonClasses.add("active")
       : buttonClasses.remove("active");
@@ -215,7 +210,6 @@ function redrawItemButtonsExclusive(buttons) {
     const item = buttons[i];
     const button = document.createElement("img");
     const buttonClasses = button.classList;
-    //so change this to icon later
 
     //creates the buttons
 
@@ -264,11 +258,9 @@ function redrawAvatar() {
       }
     }
   }
-  // const lines = document.createElement("img");
-  //lines.setAttribute("src", "assets/bodyline.png");
-  //avatarDisplay.appendChild(lines);
 }
 
+//changes item location
 function move(dir) {
   const active = activeItem;
   const amount = 5;
