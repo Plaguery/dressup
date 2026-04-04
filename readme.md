@@ -1,6 +1,7 @@
 # Description
 
 A simple dress-up game! i drew all the sprites myself :D
+images may take a while to load
 
 # Development
 
