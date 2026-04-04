@@ -211,4 +211,10 @@ body {
   #mainDisplay {
     width: 90vw;
   }
+
+  .optionButton {
+    height: 12vw;
+    width: auto;
+    border-radius: 10px 10px 0px 0px;
+  }
 }
